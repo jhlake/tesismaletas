@@ -13,7 +13,9 @@ var sensoresRouter = require('./routes/sensores');
 var app = express();
 
 // view engine setup
-app.use(express.static(__dirname + '/public/views'));
+app.set('views', __dirname + '/public/views/'); // general config
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 
 app.use(logger('dev'));
@@ -38,7 +40,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: err.message,
+    error: err
+  });
 });
 
 module.exports = app;

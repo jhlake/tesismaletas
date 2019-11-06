@@ -8,6 +8,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "debug": "~2.6.9",
+    "ejs": "^2.7.1",
     "express": "~4.16.1",
     "firebase-admin": "^8.6.1",
     "firebase-functions": "^3.3.0",
