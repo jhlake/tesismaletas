@@ -6,6 +6,7 @@ request.send();
 
 request.onload = function() {
 var dataObject = request.response;
+var dataObject2 = new Array();
 var count = Object.keys(dataObject).length
 //console.log(count)
 for(let i = 0; i < count; i++){
@@ -22,15 +23,37 @@ for(let i = 0; i < count; i++){
     var value = splits[2];
     var unit = splits[3];
     var time = splits[4];
+    var door = new String ("Door");
+    //console.log("sensor"+ sensor);
 
+    // sensoresssssss
+    var sensor2 = JSON.stringify(sensor);
+    var splitsSensor= sensor2.split('\\"');
+    var s1 = splitsSensor[1];
+    var s2 = splitsSensor[3];
+
+    var value2 = JSON.stringify(value); 
+    var splitsValue= value2.split('\\"');
+    var val1 = splitsValue[1];
+    var val2 = splitsValue[3];
+
+    // puerta abierta 
+    if (s2 === "Door" && val2 === "abierto")
+    {
+      //console.log(s2 + val2);
+      //console.log(actual2);
+      dataObject2.push(actual2);
+      //console.log(dataObject2);
+    }
+    // sensoressssss
   }
 
 }
 
 var listItemString = $('#listItem').html();
   
+//dataObject.forEach(buildNewList);
 dataObject.forEach(buildNewList);
-
 
 function buildNewList(item, index) 
 {
