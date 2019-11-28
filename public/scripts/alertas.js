@@ -37,6 +37,9 @@ for(let i = 0; i < count; i++){
     var val1 = splitsValue[1];
     var val2 = splitsValue[3];
 
+    //parse string a number del acelerometro
+    //aqui termina
+
     // puerta abierta 
     if (s2 === "Door" && val2 === "abierto")
     {
@@ -45,9 +48,24 @@ for(let i = 0; i < count; i++){
       dataObject2.push(JSON.parse(actual2));
     }
     // sensoressssss
+    if (s2 === "Accel")
+    {
+      var x = parseFloat(val2.split(" ")[1]);
+      var y = parseFloat(val2.split(" ")[3]);
+      var z = parseFloat(val2.split(" ")[5]);
+      var max = new Number('18');
+      if (x > max || y > max || z > max)
+      {
+        console.log(x + "/" + y + "/" + z);
+        dataObject2.push(JSON.parse(actual2));
+      }
+    }
+    if (s2 ==="GPS")
+    {
+      
+    }
 
 }
-console.log(dataObject2)
 }
 
 
