@@ -10,6 +10,7 @@ var dataObject2 = [];
 var jsonSensores = [];
 sensores();
 
+
 function sensores()
 {
   var count = Object.keys(dataObject).length
@@ -19,9 +20,7 @@ for(let i = 0; i < count; i++){
   let actual = dataObject[i];
   var count2 = Object.keys(actual).length
   //console.log(count2);
-  for(let j = 0; j < count2; j++){
-  
-    
+
     let actual2 = JSON.stringify(actual);
     console.log()
     let splits = actual2.split(",");
@@ -31,24 +30,6 @@ for(let i = 0; i < count; i++){
     var unit = splits[3];
     var time = splits[4];
     var door = new String ("Door");
-
-    //console.log("sensor"+ sensor);
-
-    // sensoresssssss
-
-    //con esto funciona
-    /*
-    var sensor2 = JSON.stringify(sensor);
-    var splitsSensor= sensor2.split('\\"');
-    var s1 = splitsSensor[1];
-    var s2 = splitsSensor[3];
-
-    var value2 = JSON.stringify(value); 
-    var splitsValue= value2.split('\\"');
-    var val1 = splitsValue[1];
-    var val2 = splitsValue[3];
-    */
-    //
     var splitsSensor= sensor.split('"');
     var s1 = splitsSensor[1];
     var s2 = splitsSensor[3];
@@ -61,22 +42,19 @@ for(let i = 0; i < count; i++){
     {
       //console.log(s2 + val2);
       //console.log(actual2);
-      dataObject2.push(actual2);
-
-
+      dataObject2.push(JSON.parse(actual2));
     }
     // sensoressssss
-  }
 
 }
+console.log(dataObject2)
 }
-jsonSensores = JSON.parse(JSON.stringify(dataObject2));
-console.log(jsonSensores);
+
 
 var listItemString = $('#listItem').html();
 
 //dataObject.forEach(buildNewList);
-dataObject.forEach(buildNewList);
+dataObject2.forEach(buildNewList);
 
 function buildNewList(item, index) 
 {
