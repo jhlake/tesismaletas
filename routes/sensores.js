@@ -39,4 +39,16 @@ router.post('/', function(req, res){
   });
 });
 
+router.delete('/', function(req, res){
+  console.log("Delete Reading "+ req.body.readingId);
+  const id = req.body.readingId
+    return db.sensores.findByPk(id)
+      .then((sensorRead) => sensorRead.destroy())
+      .then(() => {res.status(200)})
+        .catch((err) => {
+          console.log('***Error deleting reading', err)
+        res.status(400).send(err)
+    })
+  });
+
 module.exports = router;
