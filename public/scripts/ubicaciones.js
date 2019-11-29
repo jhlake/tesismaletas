@@ -6,21 +6,40 @@ request.send();
 
 var map;
 
-request.onload = function(){
-    var coordinateList= [];
+request.onload = function () {
+    var coordinateList = [];
     var dataObject = request.response;
-    for(obj of dataObject){
+    for (obj of dataObject) {
         obj = JSON.parse(obj);
-        if(obj.sensor === "GPS")
+        if (obj.sensor === "GPS")
             coordinateList.push(obj.value)
     }
     console.log(coordinateList);
+    paint(coordinateList)
 }
 
 
-function paint(coords){
+function paint(coords) {
+    //sacar ultimas coordenadas las cuales seran el centro del mapa
+    const latVal = parseFloat(coords[coords.length - 1].value.split("/")[0])
+    const longVal = parseFloat(coords[coords.length - 1].value.split("/")[1])
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+        center: { lat: latVal, lng: longVal },
+        zoom: 7
     });
+    //parsear las coordenadas
+    var coordenadas = [];
+    coords.map((val) => {
+        var latlng = { lat: parseFloat(val.value.split("/")[0]), lng: parseFloat(val.value.split("/")[1]) }
+        coordenadas.push(latlng)
+    });
+    //pintar linea 
+    var path = new google.maps.Polyline({
+        path: coordenadas,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+    });
+    path.setMap(map)
 }
