@@ -5,12 +5,15 @@ request.responseType = 'json';
 request.send();
 
 var map;
+function initMap() {
+    console.log("Mapa cargado")
+  }
+
 
 request.onload = function () {
     var coordinateList = [];
     var dataObject = request.response;
     for (obj of dataObject) {
-        obj = JSON.parse(obj);
         if (obj.sensor === "GPS")
             coordinateList.push(obj.value)
     }
@@ -21,8 +24,8 @@ request.onload = function () {
 
 function paint(coords) {
     //sacar ultimas coordenadas las cuales seran el centro del mapa
-    const latVal = parseFloat(coords[coords.length - 1].value.split("/")[0])
-    const longVal = parseFloat(coords[coords.length - 1].value.split("/")[1])
+    const latVal = parseFloat(coords[coords.length - 1].split("/")[0])
+    const longVal = parseFloat(coords[coords.length - 1].split("/")[1])
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: latVal, lng: longVal },
         zoom: 7
@@ -30,7 +33,7 @@ function paint(coords) {
     //parsear las coordenadas
     var coordenadas = [];
     coords.map((val) => {
-        var latlng = { lat: parseFloat(val.value.split("/")[0]), lng: parseFloat(val.value.split("/")[1]) }
+        var latlng = { lat: parseFloat(val.split("/")[0]), lng: parseFloat(val.split("/")[1]) }
         coordenadas.push(latlng)
     });
     //pintar linea 
