@@ -1,2 +1,0 @@
-//Cargar cosas al front
-

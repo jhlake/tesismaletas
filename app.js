@@ -7,7 +7,7 @@ var logger = require('morgan');
 //Routers
 var indexRouter = require('./routes/index');
 var sensoresRouter = require('./routes/sensores');
-
+var scrapRouter = require('./routes/scraping');
 
 
 var app = express();
@@ -40,6 +40,7 @@ app.use(function(req,res,next){
 
 app.use('/', indexRouter);
 app.use('/api/sensores/', sensoresRouter);
+app.use('/api/scrap/', scrapRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
