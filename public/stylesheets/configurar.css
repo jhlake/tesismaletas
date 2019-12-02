@@ -76,7 +76,7 @@ body {
   .stub .number {
     position: absolute;
     left: 40px;
-    font-size: 150px;
+    font-size: 68px;
   }
   .stub .invite {
     position: absolute;
@@ -119,7 +119,7 @@ body {
     width: 0;
   }
   .check .big {
-    font-size: 80px;
+    font-size: 68px;
     font-weight: 900;
     line-height: .8em;
   }
