@@ -15,7 +15,7 @@
     "morgan": "^1.9.1",
     "node-pre-gyp": "^0.14.0",
     "nodemon": "^1.19.4",
-    "sequelize": "^5.21.2",
+    "sequelize": "^6.29.0",
     "sqlite3": "^4.1.0",
     "url-parse": "^1.4.7"
   }
